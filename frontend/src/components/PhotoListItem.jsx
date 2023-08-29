@@ -3,7 +3,7 @@ import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
-  const { id, city, country, username, imageSource, profile, pictureClick } = props;
+  const { id, city, country, username, imageSource, profile, pictureClick, categories } = props;
 
   const handleClick = () => {
     if(pictureClick) {
@@ -30,6 +30,10 @@ const PhotoListItem = (props) => {
           <p className="photo-list__user-info">{username}</p>
           <p className="photo-list__user-info photo-list__user-location">
             {city + ", "} {country}
+          </p>
+          {/* Display categories here */}
+          <p className="photo-list__user-info photo-list__user-categories">
+            Categories: {categories ? categories.join(", ") : "None"}
           </p>
         </div>
       </div>
