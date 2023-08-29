@@ -3,19 +3,24 @@ import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = (props) => {
-  const { favImagesArr, id } = props;
+  const { favImagesArr, id, isFav } = props; 
+  
   const [selected, setSelected] = useState(
-    favImagesArr.includes(id) ? true : false
+    favImagesArr && favImagesArr.includes(id) ? true : false 
   );
 
   const handleClick = () => {
     setSelected(!selected);
-    selected === true ? isFav(false, id) : isFav(true, id); 
+    if (isFav) {  
+      selected === true ? isFav(false, id) : isFav(true, id);  
+    }
   };
 
   useEffect(() => {
-    favImagesArr.includes(id) ? setSelected(true) : setSelected(false);
-  }, [favImagesArr, id]); // Include dependencies
+    if (favImagesArr) {
+      favImagesArr.includes(id) ? setSelected(true) : setSelected(false);
+    }
+  }, [favImagesArr, id]); 
 
   return (
     <div className="photo-list__fav-icon">
