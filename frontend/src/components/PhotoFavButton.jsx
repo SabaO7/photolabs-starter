@@ -3,32 +3,20 @@ import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = (props) => {
-  const { favImagesArr, id, isFav } = props; 
-  
-  const [selected, setSelected] = useState(
-    favImagesArr && favImagesArr.includes(id) ? true : false 
-  );
+  const { id, toggleLike, isLiked } = props;  // changed isFav to toggleLike
 
   const handleClick = () => {
-    setSelected(!selected);
-    if (isFav) {  
-      selected === true ? isFav(false, id) : isFav(true, id);  
-    }
+    toggleLike(!isLiked, id);  // calling toggleLike instead of isFav
   };
-
-  useEffect(() => {
-    if (favImagesArr) {
-      favImagesArr.includes(id) ? setSelected(true) : setSelected(false);
-    }
-  }, [favImagesArr, id]); 
 
   return (
     <div className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg" onClick={handleClick}>
-        <FavIcon selected={selected} />
+        <FavIcon selected={isLiked} /> 
       </div>
     </div>
   );
 };
+
 
 export default PhotoFavButton;

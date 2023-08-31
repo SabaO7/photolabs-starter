@@ -1,23 +1,33 @@
 import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
+import topics from "mocks/topics";
 
 const PhotoListItem = (props) => {
-  const { id, city, country, username, imageSource, profile, pictureClick, categories } = props;
+  const { id, city, country, username, imageSource, profile, pictureClick, toggleLike, isLiked } = props;
+
+  const handleFavClick = () => {
+    toggleLike(!isLiked, id);
+  };
 
   const handleClick = () => {
-    if(pictureClick) {
-      pictureClick(id);
+    if (props.handlePhotoClick) {
+      props.handlePhotoClick(props.photo);
     }
   };
+  
 
   return (
     <li className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton 
+          id={id} 
+          toggleLike={toggleLike}
+          isLiked={isLiked} 
+        />
       <img
         className="photo-list__image"
         src={imageSource}
-        alt="" 
+        alt=""
         onClick={handleClick}
       />
       <div className="photo-list__user-details">
@@ -31,10 +41,7 @@ const PhotoListItem = (props) => {
           <p className="photo-list__user-info photo-list__user-location">
             {city + ", "} {country}
           </p>
-          {/* Display categories here */}
-          <p className="photo-list__user-info photo-list__user-categories">
-            Categories: {categories ? categories.join(", ") : "None"}
-          </p>
+          <p className="photo-list__categories">{topics.titles} </p>
         </div>
       </div>
     </li>
