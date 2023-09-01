@@ -1,21 +1,18 @@
 import React from 'react';
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
-import topics from "../mocks/topics";  // Update this path based on your actual file structure
+import topics from "../mocks/topics"; 
 
 const PhotoListItem = (props) => {
   const { id, city, country, username, imageSource, profile, toggleLike, favorites, handlePhotoClick, photo } = props;
 
-  // Directly check if the photo is liked based on the favorites array
   const isLiked = favorites.includes(id);
 
-  // When the favorite button is clicked
   const handleFavClick = (event) => {
     event.stopPropagation(); 
     toggleLike(!isLiked, id);
   };
 
-  // When the photo itself is clicked
   const handleClick = () => {
     if (handlePhotoClick) {
       handlePhotoClick(photo);
@@ -48,7 +45,7 @@ const PhotoListItem = (props) => {
           <p className="photo-list__user-info photo-list__user-location">
             {`${city}, ${country}`}
           </p>
-          <p className="photo-list__categories">{topics.titles} </p>  {/* Note: topics.titles will only work if titles is an array, make sure it exists */}
+          <p className="photo-list__categories">{topics.titles} </p> 
         </div>
       </div>
     </li>
