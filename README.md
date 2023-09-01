@@ -1,5 +1,7 @@
 # react-photolabs
-The PhotoLabs project for the Web Development React course programming.
+The PhotoLabs project for the Web Development React course programming. The starter project was forked from Lighthouse Lab.
+
+![Screenshot of the project](photolabs-starter/frontend/assets/screenshot.png)
 
 # Photolabs
 
@@ -13,6 +15,7 @@ Install dependencies with `npm install` in each respective `/frontend` and `/bac
 cd frontend
 npm start
 ```
+
 
 ## [Backend] Running Backend Servier
 
