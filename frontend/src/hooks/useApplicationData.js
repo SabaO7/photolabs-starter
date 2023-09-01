@@ -90,12 +90,23 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { isModalOpen: false } });
   };
 
+  const fetchPhotosByTopic = (topic_id) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topic_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+        console.log("Data dispatched", data);
+      })
+      .catch((error) => console.error('There was a problem with the fetch operation:', error));
+  };
+  
+
   useEffect(() => {
-    fetch("/api/photos")
+    fetch("http://localhost:8001/api/photos")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
     
-    fetch("/api/topics")
+    fetch("http://localhost:8001/api/topics")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
@@ -104,7 +115,8 @@ const useApplicationData = () => {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    fetchPhotosByTopic
   };
 };
 

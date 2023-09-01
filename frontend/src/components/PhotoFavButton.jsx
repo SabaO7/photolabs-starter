@@ -5,7 +5,6 @@ import "../styles/PhotoFavButton.scss";
 const PhotoFavButton = ({ id, toggleLike, isLiked }) => {
 
   const handleClick = () => {
-    console.log('HandleClick in PhotoFavButton called');
 
     if (typeof toggleLike === 'function') {
       toggleLike(!isLiked, id);

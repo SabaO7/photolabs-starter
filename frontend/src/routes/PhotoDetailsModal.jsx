@@ -12,9 +12,11 @@ const PhotoDetailsModal = ({ closeModal, photo, similarPhotos, toggleLike, favor
 
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={closeModal}>
-        <img src={closeSymbol} alt="close symbol" />
-      </button>
+      <div className="photo-details-modal__sticky-header">
+        <button className="photo-details-modal__close-button" onClick={closeModal}>
+          <img src={closeSymbol} alt="close symbol" />
+        </button>
+      </div>
       
       <div className="photo-details-modal__images">
         <PhotoListItem 

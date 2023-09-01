@@ -5,10 +5,11 @@
   top: 55%;
   left: 50%;
   transform: translate(-50%, -40%);
-  height: 80%;
+  height: calc(100vh - 20%);
   width: 55%;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 12px;
+  list-style-type: none;
 }
 
 .photo-details-modal__close-button {
@@ -22,11 +23,17 @@
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
-  position: fixed;
+}
+
+.photo-details-modal__sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: inherit;
 }
 
 .photo-details-modal__images {
-  margin-left: 36px;
+  margin-left: 106px;
   margin-top: 8px;
 }
 

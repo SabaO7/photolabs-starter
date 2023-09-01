@@ -10,6 +10,7 @@ const App = () => {
     updateToFavPhotoIds,
     setPhotoSelected,
     onClosePhotoDetailsModal,
+    fetchPhotosByTopic,
   } = useApplicationData();
 
   const { isModalOpen, selectedPhoto, similarPhotos, favorites, photoData, topicData } = state;
@@ -19,10 +20,11 @@ const App = () => {
       <HomeRoute
         handlePhotoClick={setPhotoSelected}
         setFavorites={updateToFavPhotoIds}
+        fetchPhotosByTopic={fetchPhotosByTopic}
         favorites={favorites}
         toggleLike={updateToFavPhotoIds}
-        photoData={photoData}
-        topicData={topicData}
+        photos={photoData}
+        topics={topicData}
       />
       {isModalOpen && (
         <PhotoDetailsModal
