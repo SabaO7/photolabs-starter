@@ -1,7 +1,7 @@
 # react-photolabs
 The PhotoLabs project for the Web Development React course programming. The starter project was forked from Lighthouse Lab.
 
-![Screenshot of the project](photolabs-starter/frontend/assets/screenshot.png)
+![Screenshot of the project](/Users/SabaOji/lighthouse/Photolab/photolabs-starter/frontend/assets/screenshot.png)
 
 # Photolabs
 
