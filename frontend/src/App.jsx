@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [selectedPhoto, setSelectedPhoto] = React.useState(null);
-  const [similarPhotos, setSimilarPhotos] = React.useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [similarPhotos, setSimilarPhotos] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleLike = (isLiked, imageId) => {
+    if (isLiked) {
+      if (!favorites.includes(imageId)) {
+        setFavorites([...favorites, imageId]);
+      }
+    } else {
+      setFavorites(favorites.filter(id => id !== imageId));
+    }
+  };
 
   const handlePhotoClick = (photo) => {
     console.log('photo:', photo);
@@ -15,7 +26,6 @@ const App = () => {
     if (photo && photo.similar_photos) {
       setSimilarPhotos(Object.values(photo.similar_photos));
     } else {
-      console.warn('similar_photos is undefined or null');
     }
   };
 
@@ -25,8 +35,22 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute handlePhotoClick={handlePhotoClick} />
-      {isModalOpen && <PhotoDetailsModal photo={selectedPhoto} closeModal={closeTheModal} similarPhotos={similarPhotos} />}
+      <HomeRoute
+        handlePhotoClick={handlePhotoClick}
+        setFavorites={setFavorites}
+        favorites={favorites}
+        toggleLike={toggleLike} 
+      />
+      {isModalOpen && (
+        <PhotoDetailsModal
+          photo={selectedPhoto}
+          closeModal={closeTheModal}
+          similarPhotos={similarPhotos}
+          favorites={favorites}
+          setFavorites={setFavorites}
+          toggleLike={toggleLike}
+        />
+      )}
     </div>
   );
 };

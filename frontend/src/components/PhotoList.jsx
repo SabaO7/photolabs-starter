@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import PhotoListItem from './PhotoListItem';
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({ likedImages, toggleLike, photos, handlePhotoClick}) => {
+const PhotoList = ({ likedImages, toggleLike, photos, handlePhotoClick, favorites, setFavorites}) => {
+
   return (
     <ul className="photo-list">
       {photos.map((photo) => {
@@ -19,6 +20,8 @@ const PhotoList = ({ likedImages, toggleLike, photos, handlePhotoClick}) => {
             isLiked={likedImages ? likedImages.includes(id) : false}
             photo={photo}
             handlePhotoClick={handlePhotoClick}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />
         );
       })}

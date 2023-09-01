@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
-const PhotoFavButton = (props) => {
-  const { id, toggleLike, isLiked } = props;  // changed isFav to toggleLike
+const PhotoFavButton = ({ id, toggleLike, isLiked }) => {
 
   const handleClick = () => {
-    toggleLike(!isLiked, id);  // calling toggleLike instead of isFav
+    console.log('HandleClick in PhotoFavButton called');
+
+    if (typeof toggleLike === 'function') {
+      toggleLike(!isLiked, id);
+    } else {
+    }
   };
 
   return (
