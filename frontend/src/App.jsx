@@ -1,4 +1,3 @@
-// App.jsx
 import React from 'react';
 import './App.scss';
 import HomeRoute from './routes/HomeRoute';
@@ -13,15 +12,17 @@ const App = () => {
     onClosePhotoDetailsModal,
   } = useApplicationData();
 
-  const { isModalOpen, selectedPhoto, similarPhotos, favorites } = state;
+  const { isModalOpen, selectedPhoto, similarPhotos, favorites, photoData, topicData } = state;
 
   return (
     <div className="App">
       <HomeRoute
         handlePhotoClick={setPhotoSelected}
-        setFavorites={updateToFavPhotoIds} // Ensure to adjust this in HomeRoute as well
+        setFavorites={updateToFavPhotoIds}
         favorites={favorites}
         toggleLike={updateToFavPhotoIds}
+        photoData={photoData}
+        topicData={topicData}
       />
       {isModalOpen && (
         <PhotoDetailsModal

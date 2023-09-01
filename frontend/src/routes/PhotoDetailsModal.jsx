@@ -16,11 +16,6 @@ const PhotoDetailsModal = ({ closeModal, photo, similarPhotos, toggleLike, favor
         <img src={closeSymbol} alt="close symbol" />
       </button>
       
-      <div className="user-details">
-        <h3>{photo?.user?.username}</h3>
-        <img src={photo?.user?.profile} alt={`${photo?.user?.username}'s profile`} />
-      </div>
-      
       <div className="photo-details-modal__images">
         <PhotoListItem 
           id={photo?.id}

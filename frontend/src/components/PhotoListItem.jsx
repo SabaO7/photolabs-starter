@@ -35,13 +35,13 @@ const PhotoListItem = (props) => {
         onClick={handleClick}
       />
       <div className="photo-list__user-details">
-        <img
-          className="photo-list__user-profile"
-          src={profile}
-          alt={"profile img for " + username}
-        />
+      <img
+        className="photo-list__user-profile"
+        src={photo?.user?.profile}
+        alt={"profile img for " + (photo?.user?.name || username)}
+      />
         <div>
-          <p className="photo-list__user-info">{username}</p>
+        <p className="photo-list__user-info">{photo?.user?.name || username}</p>
           <p className="photo-list__user-info photo-list__user-location">
             {`${city}, ${country}`}
           </p>
