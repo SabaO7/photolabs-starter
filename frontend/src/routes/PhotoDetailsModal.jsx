@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
-import PhotoListItem from '../components/PhotoListItem';  // <-- Importing PhotoListItem
+import PhotoListItem from '../components/PhotoListItem';
 
 const PhotoDetailsModal = ({ closeModal, photo, similarPhotos, toggleLike, favorites, setFavorites }) => {
 
@@ -15,6 +15,12 @@ const PhotoDetailsModal = ({ closeModal, photo, similarPhotos, toggleLike, favor
       <button className="photo-details-modal__close-button" onClick={closeModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
+      
+      <div className="user-details">
+        <h3>{photo?.user?.username}</h3>
+        <img src={photo?.user?.profile} alt={`${photo?.user?.username}'s profile`} />
+      </div>
+      
       <div className="photo-details-modal__images">
         <PhotoListItem 
           id={photo?.id}

@@ -4,8 +4,7 @@ import PhotoList from '../components/PhotoList';
 import photos from '../mocks/photos';
 import topics from '../mocks/topics';
 
-
-const HomeRoute = ({ handlePhotoClick, setFavorites, favorites, toggleLike }) => {
+const HomeRoute = ({ handlePhotoClick, updateToFavPhotoIds, favorites, toggleLike }) => {
   const [likedImages, setLikedImages] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
 
@@ -17,10 +16,11 @@ const HomeRoute = ({ handlePhotoClick, setFavorites, favorites, toggleLike }) =>
         likedImages={likedImages}
         selectedTopic={selectedTopic}
         handlePhotoClick={handlePhotoClick}
-        setFavorites={setFavorites}
+        updateToFavPhotoIds={updateToFavPhotoIds} 
         favorites={favorites}
         toggleLike={toggleLike}
-/>    </div>
+      />    
+    </div>
   );
 };
 

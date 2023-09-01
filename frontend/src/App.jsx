@@ -1,54 +1,36 @@
-import React, { useState } from 'react';
+// App.jsx
+import React from 'react';
 import './App.scss';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [similarPhotos, setSimilarPhotos] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const {
+    state,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
-  const toggleLike = (isLiked, imageId) => {
-    if (isLiked) {
-      if (!favorites.includes(imageId)) {
-        setFavorites([...favorites, imageId]);
-      }
-    } else {
-      setFavorites(favorites.filter(id => id !== imageId));
-    }
-  };
-
-  const handlePhotoClick = (photo) => {
-    console.log('photo:', photo);
-    setIsModalOpen(true);
-    setSelectedPhoto(photo);
-    if (photo && photo.similar_photos) {
-      setSimilarPhotos(Object.values(photo.similar_photos));
-    } else {
-    }
-  };
-
-  const closeTheModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isModalOpen, selectedPhoto, similarPhotos, favorites } = state;
 
   return (
     <div className="App">
       <HomeRoute
-        handlePhotoClick={handlePhotoClick}
-        setFavorites={setFavorites}
+        handlePhotoClick={setPhotoSelected}
+        setFavorites={updateToFavPhotoIds} // Ensure to adjust this in HomeRoute as well
         favorites={favorites}
-        toggleLike={toggleLike} 
+        toggleLike={updateToFavPhotoIds}
       />
       {isModalOpen && (
         <PhotoDetailsModal
           photo={selectedPhoto}
-          closeModal={closeTheModal}
+          closeModal={onClosePhotoDetailsModal}
           similarPhotos={similarPhotos}
           favorites={favorites}
-          setFavorites={setFavorites}
-          toggleLike={toggleLike}
+          setFavorites={updateToFavPhotoIds}
+          toggleLike={updateToFavPhotoIds}
         />
       )}
     </div>
